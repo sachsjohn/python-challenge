@@ -10,13 +10,16 @@ with open(budget_path, newline="") as csvfile:
         
     print(f"Header: {csv_header}")
 
+    # Priming the variables we will be using
     entries = 0
     bud_sum = 0
     maxinc = 0
     maxdec = 0
 
     for row in csv_reader:
+        # Tracking the number of months
         entries = entries + 1
+        # Creating a sum for the budget
         bud_sum = bud_sum + float(row[1])
 
         if int(row[1]) > int(maxinc):
@@ -28,7 +31,8 @@ with open(budget_path, newline="") as csvfile:
             decdate = row[0]
 
     avg_change = bud_sum / entries
-    # Printing
+    
+    # Printing to bash
 
     print("Financial Analysis")
     print("---------------------------")
@@ -38,7 +42,7 @@ with open(budget_path, newline="") as csvfile:
     print(f"Greatest Increase in Profits: {incdate} (${maxinc})")
     print(f"Greatest Decrease in Profits: {decdate} (${maxdec})")
 
-
+    # Printing to txt file
     text = open("PyBank.txt","w+")
     text.write("Financial Analysis\n")
     text.write("---------------------------\n")
